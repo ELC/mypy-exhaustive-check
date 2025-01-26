@@ -12,9 +12,6 @@ pytest = "==8.3.4"
 pytest-cov = "==6.0.0"
 pre-commit = "==4.1.0"
 
-[requires]
-python_version = "3.9"
-
 [scripts]
 test = "pytest ."
 format = "pre-commit run --all-files"
