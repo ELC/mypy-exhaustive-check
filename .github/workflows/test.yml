@@ -130,7 +130,7 @@ jobs:
 
       - name: Install Project Dependencies
         run: |
-          pipx install pipenv==2023.2.4
+          pipx install pipenv==2024.4.1
           pipenv install --dev --deploy
 
       - name: Run Tests
