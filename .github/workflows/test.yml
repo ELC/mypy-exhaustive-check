@@ -114,6 +114,7 @@ jobs:
 
       - name: Run Tests
         run: |
+          pipenv run pip install -e .
           pipenv run test
 
       - name: Check Breaking changes

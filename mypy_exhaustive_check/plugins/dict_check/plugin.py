@@ -33,14 +33,17 @@ class ExhaustiveDictPlugin(Plugin):
         return cls
 
     def __call__(self, ctx: FunctionContext) -> Union[Type, Instance]:
+        if not self.is_context_compatible(ctx):
+            return ctx.default_return_type
+
         key_type, _ = ctx.default_return_type.args  # type: ignore
 
-        enum_members = set(key_type.type.names)
+        enum_members: set[str] = set(key_type.type.names)
 
         if not ctx.args:
             ctx.api.fail(
-                f"{NON_EXHAUSTIVE_ENUM_IN_DICT.description} \n"
-                f"Unhandled members: {', '.join(enum_members)}",
+                f"{NON_EXHAUSTIVE_ENUM_IN_DICT.description} "
+                f"Unhandled members: {', '.join(sorted(enum_members))}",
                 ctx.context,
             )
             return ctx.default_return_type
@@ -58,10 +61,14 @@ class ExhaustiveDictPlugin(Plugin):
         missing_keys = enum_members - provided_keys
         if missing_keys:
             ctx.api.fail(
-                f"{NON_EXHAUSTIVE_ENUM_IN_DICT.description}"
-                f"Unhandled members: {', '.join(missing_keys)}",
+                f"{NON_EXHAUSTIVE_ENUM_IN_DICT.description} "
+                f"Unhandled members: {', '.join(sorted(missing_keys))}",
                 ctx.context,
                 code=NON_EXHAUSTIVE_ENUM_IN_DICT,
             )
 
         return ctx.default_return_type
+
+
+def plugin(_: str) -> type[Plugin]:
+    return ExhaustiveDictPlugin
