@@ -2,7 +2,11 @@
 
 
 
-## v0.1.0 (2025-01-27)
+## v1.0.0 (2025-01-27)
+
+### Breaking
+
+* fix(release)!: bump major version ([`393d7b0`](https://github.com/ELC/mypy-exhaustive-check/commit/393d7b0243517bd12aa321cd40c5404a3766b70b))
 
 ### Feature
 

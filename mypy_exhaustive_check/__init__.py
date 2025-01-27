@@ -9,4 +9,4 @@ def plugin(_: str) -> type[Plugin]:
 
 __all__ = ["PluginDispatcher", "plugin"]
 
-__version__ = "0.1.0"
+__version__ = "1.0.0"
