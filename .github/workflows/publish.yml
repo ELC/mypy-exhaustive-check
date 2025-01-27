@@ -46,7 +46,7 @@ jobs:
 
       - name: Build package
         run: |
-          pipx run build
+          pipx run build==1.2.2
 
       - name: Determine Target Version
         id: version

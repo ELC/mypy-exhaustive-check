@@ -129,8 +129,8 @@ jobs:
 
       - name: Check Build and Wheel
         run: |
-          pipx run build==1.0.3
-          pipx run twine==4.0.2 check --strict dist/*
+          pipx run build==1.2.2
+          pipx run twine==6.1.0 check --strict dist/*
 
   test-finish:
     needs: test
