@@ -81,6 +81,8 @@ addopts = [
     "--durations=10",
     "--cov", ".",
     "--cov-report", "term-missing",
+    "--cov-report", "xml:coverage-report.xml",
+    "--junitxml", "coverage.xml",
 ]
 
 #########################
