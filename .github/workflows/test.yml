@@ -51,27 +51,6 @@ jobs:
         run: |
           pip install pipx==1.2.1
 
-      - name: Update Pre-Commits
-        run: |
-          pipx install pre-commit==3.5.0
-          pre-commit autoupdate
-          differences=$(git diff | xargs)
-
-          if [ -z "$differences" ]; then
-            echo "No changes needed"
-            exit 0
-          fi
-
-          echo "::error::The pre-commit hooks are outdated"
-          echo "$differences"
-
-          git add --all
-          git commit -m "chore(test): update versions of pre-commit hooks"
-          git push
-
-          sleep 30
-          exit 1
-
       - name: Update Version and Changelog
         run: |
           pipx install python-semantic-release==8.3.0
