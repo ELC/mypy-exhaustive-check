@@ -1,7 +1,7 @@
 - case: all_members_used
   main: |
     from enum import Enum, auto
-    
+
     class Color(Enum):
         RED = auto()
         GREEN = auto()
@@ -14,11 +14,10 @@
     }
 
 - case: missing_one_member
-  mypy_config:
-    plugins = mypy_exhaustive_check.plugins.dict_check
+  mypy_config: plugins = mypy_exhaustive_check.plugins.dict_check
   main: |
     from enum import Enum, auto
-    
+
     class Color(Enum):
         RED = auto()
         GREEN = auto()
@@ -28,20 +27,21 @@
         Color.RED: '#FF0000',
         Color.GREEN: '#00FF00',
     }
-  out: |
-    main:8: error: Keys within dictionary do not exhaustively handle all enum members. Unhandled members: BLUE  [dict-not-exhaustive]
+  out: >
+    main:8: error: Keys within dictionary do not exhaustively handle all enum
+    members. Unhandled members: BLUE  [dict-not-exhaustive]
 
 - case: missing_all_members
-  mypy_config:
-    plugins = mypy_exhaustive_check.plugins.dict_check
+  mypy_config: plugins = mypy_exhaustive_check.plugins.dict_check
   main: |
     from enum import Enum, auto
-    
+
     class Color(Enum):
         RED = auto()
         GREEN = auto()
         BLUE = auto()
 
     COLOR_TO_HEX: dict[Color, str] = {}
-  out: |
-    main:8: error: Keys within dictionary do not exhaustively handle all enum members. Unhandled members: BLUE, GREEN, RED  [misc]
+  out: >
+    main:8: error: Keys within dictionary do not exhaustively handle all enum
+    members. Unhandled members: BLUE, GREEN, RED  [misc]
