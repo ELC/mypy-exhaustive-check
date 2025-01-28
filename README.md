@@ -43,7 +43,7 @@ Install with pip as any other Python package:
 pip install mypy-exhaustive-check
 ```
 
-### Enable 
+### Enable
 
 Add the package name to the `plugins` of your Mypy config.
 
@@ -128,4 +128,3 @@ To check linting and formatting, use:
 ```sh
 pipenv run format
 ```
-
